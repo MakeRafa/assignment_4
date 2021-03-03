@@ -113,7 +113,7 @@ def comparison_results():
     city2_json = get_results(city2)
 
     context = {
-        'date': datetime.now(),
+        'date': datetime.now().strftime('%I:%M'),
         'units_letter': get_letter_for_units(units),
         'city1_info': {
             'city1': city1,
@@ -121,7 +121,7 @@ def comparison_results():
             'humidity': city1_json['main']['humidity'],
             'wind_speed': city1_json['wind']['speed'],
             'sunrise': datetime.fromtimestamp(city1_json['sys']['sunrise']),
-            'sunset': datetime.fromtimestamp(city1_json['sys']['sunset']),
+            'sunset': datetime.fromtimestamp(city1_json['sys']['sunset']).strftime('%I'),
         },
         'city2_info': {
             'city2': city2,
@@ -129,7 +129,7 @@ def comparison_results():
             'humidity': city2_json['main']['humidity'],
             'wind_speed': city2_json['wind']['speed'],
             'sunrise': datetime.fromtimestamp(city2_json['sys']['sunrise']),
-            'sunset': datetime.fromtimestamp(city2_json['sys']['sunset']),
+            'sunset': datetime.fromtimestamp(city2_json['sys']['sunset']).strftime('%I'),
         }
     }
     return render_template('comparison_results.html', **context)
